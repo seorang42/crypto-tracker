@@ -7,9 +7,12 @@ import { Link } from "react-router-dom";
 import { fetchCoinInfo, fetchCoinTickers } from "../api";
 import { useQuery } from "react-query";
 import { Helmet } from "react-helmet";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHouse } from "@fortawesome/free-solid-svg-icons";
 
 const Title = styled.h1`
   font-size: 48px;
+  font-weight: 400;
   color: ${(props) => props.theme.accentColor};
 `;
 
@@ -22,6 +25,17 @@ const Container = styled.div`
   padding: 0px 20px;
   max-width: 480px;
   margin: 0 auto;
+`;
+
+const HomeBtn = styled.div`
+  position: fixed;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  font-weight: 400;
+  span:first-child {
+    margin-right: 5px;
+  }
 `;
 
 const Header = styled.header`
@@ -164,6 +178,14 @@ function Coin() {
           {state?.name ? state.name : loading ? "Loading..." : infoData?.name}
         </title>
       </Helmet>
+      <Link to={`/`}>
+        <HomeBtn>
+          <span>
+            <FontAwesomeIcon icon={faHouse} />
+          </span>
+          <span>Home</span>
+        </HomeBtn>
+      </Link>
       <Header>
         <Title>
           {state?.name ? state.name : loading ? "Loading..." : infoData?.name}
@@ -209,7 +231,7 @@ function Coin() {
           </Tabs>
 
           <Routes>
-            <Route path="price" element={<Price />} />
+            <Route path="price" element={<Price coinId={coinId!} />} />
             <Route path="chart" element={<Chart coinId={coinId!} />} />
           </Routes>
         </>
