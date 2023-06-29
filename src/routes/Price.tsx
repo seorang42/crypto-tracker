@@ -8,7 +8,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 const PriceInfo = styled.div<{ positive: boolean }>`
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: ${(props) => props.theme.boxBgColor};
   padding: 20px;
   border-radius: 10px;
   display: flex;
@@ -31,7 +31,7 @@ const PriceInfo = styled.div<{ positive: boolean }>`
 `;
 
 const AthPrice = styled.div`
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: ${(props) => props.theme.boxBgColor};
   padding: 30px;
   border-radius: 10px;
   grid-column: 1/3;
