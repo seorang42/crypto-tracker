@@ -1,10 +1,11 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle, styled } from "styled-components";
 import Router from "./Router";
-import { ReactQueryDevtools } from "react-query/devtools";
 import { ThemeProvider } from "styled-components";
 import { darkTheme, lightTheme } from "./theme";
-import { useRecoilValue } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import { isDarkAtom } from "./atoms";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
 
 const GlobalStyle = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400&display=swap');
@@ -57,6 +58,7 @@ table {
 }
 * {
   box-sizing: border-box;
+  transition: background-color 0.2s ease-in;
 }
 body {
   font-weight:300;
@@ -71,14 +73,43 @@ a {
 }
 `;
 
+const ToggleBtn = styled.div`
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: auto;
+  bottom: 0;
+  margin: 10px;
+  border-radius: 50%;
+  color: ${(props) => props.theme.textColor};
+  font-size: 1.3rem;
+  background-color: ${(props) => props.theme.boxBgColor};
+  transition: color 0.2s ease-in;
+  cursor: pointer;
+  &:hover {
+    color: ${(props) => props.theme.accentColor};
+  }
+`;
+
 function App() {
   const isDark = useRecoilValue(isDarkAtom);
+  const setMode = useSetRecoilState(isDarkAtom);
+  const toggleMode = () => setMode((prev) => !prev);
   return (
     <>
       <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
         <GlobalStyle />
+        <ToggleBtn onClick={toggleMode}>
+          {isDark ? (
+            <FontAwesomeIcon icon={faSun} />
+          ) : (
+            <FontAwesomeIcon icon={faMoon} />
+          )}
+        </ToggleBtn>
         <Router />
-        <ReactQueryDevtools initialIsOpen={true} />
       </ThemeProvider>
     </>
   );

@@ -15,6 +15,7 @@ const PriceInfo = styled.div<{ positive: boolean }>`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  box-shadow: 5px 10px 15px 0px rgba(0, 0, 0, 0.2);
   h1 {
     align-self: flex-start;
     margin-bottom: 10px;
@@ -26,7 +27,7 @@ const PriceInfo = styled.div<{ positive: boolean }>`
     justify-content: space-between;
     font-size: 1.7rem;
     font-weight: 400;
-    color: ${(props) => (props.positive ? "red" : "blue")};
+    color: ${(props) => (props.positive ? "#Cf3948" : "#3062B0")};
   }
 `;
 
@@ -39,6 +40,7 @@ const AthPrice = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  box-shadow: 5px 10px 15px 0px rgba(0, 0, 0, 0.2);
   div {
     display: flex;
     flex-direction: column;

@@ -22,19 +22,25 @@ const Loader = styled.span`
 `;
 
 const Container = styled.div`
-  padding: 0px 20px;
+  padding: 0px 20px 30px 20px;
   max-width: 480px;
   margin: 0 auto;
 `;
 
 const HomeBtn = styled.div`
   position: fixed;
+  top: 0;
+  left: 0;
   padding: 10px;
   display: flex;
   align-items: center;
   font-weight: 400;
+  transition: color 0.2s ease-in;
   span:first-child {
     margin-right: 5px;
+  }
+  &:hover {
+    color: ${(props) => props.theme.accentColor};
   }
 `;
 
@@ -51,6 +57,7 @@ const Overview = styled.div`
   background-color: ${(props) => props.theme.boxBgColor};
   padding: 10px 20px;
   border-radius: 10px;
+  box-shadow: 5px 10px 15px 0px rgba(0, 0, 0, 0.2);
 `;
 
 const OverviewItem = styled.div`
@@ -83,6 +90,7 @@ const Tab = styled.span<{ isActive: boolean }>`
   font-weight: 400;
   background-color: ${(props) => props.theme.boxBgColor};
   border-radius: 10px;
+  box-shadow: 5px 10px 15px 0px rgba(0, 0, 0, 0.2);
   color: ${(props) =>
     props.isActive ? props.theme.accentColor : props.theme.textColor};
   a {
@@ -178,14 +186,14 @@ function Coin() {
           {state?.name ? state.name : loading ? "Loading..." : infoData?.name}
         </title>
       </Helmet>
-      <Link to={`/`}>
-        <HomeBtn>
+      <HomeBtn>
+        <Link to={`/`}>
           <span>
             <FontAwesomeIcon icon={faHouse} />
           </span>
           <span>Home</span>
-        </HomeBtn>
-      </Link>
+        </Link>
+      </HomeBtn>
       <Header>
         <Title>
           {state?.name ? state.name : loading ? "Loading..." : infoData?.name}
@@ -222,11 +230,11 @@ function Coin() {
           </Overview>
 
           <Tabs>
-            <Tab isActive={chartMatch !== null}>
-              <Link to={`/${coinId}/chart`}>Chart</Link>
-            </Tab>
             <Tab isActive={priceMatch !== null}>
               <Link to={`/${coinId}/price`}>Price</Link>
+            </Tab>
+            <Tab isActive={chartMatch !== null}>
+              <Link to={`/${coinId}/chart`}>Chart</Link>
             </Tab>
           </Tabs>
 
