@@ -4,7 +4,7 @@
 
 ---
 
-- [NomadCoders](https://nomadcoders.co)에서 제공하는 강의 'React JS 마스터클래스' 중 Crypto Tracker를 구현하는 프로젝트 입니다.
+- [NomadCoders](https://nomadcoders.co)에서 제공하는 강의 'React JS 마스터클래스' 중 Crypto Tracker를 구현하는 프로젝트입니다.
 - 코인의 정보를 제공하는 API를 사용하여 다양한 가상화폐의 정보와 시간에 따른 변동을 나타내주는 기능을 포함하고 있습니다.
 
 ### 기술 스택
